@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import API from "../../utils/API";
+import API from "../utils/API";
 import { Jumbotron } from "../components/Jumbotron";
-import { savedArticles } from "../../components/savedArticles";
-import { Searchbars } from "../../components/Searchbars";
+import { savedArticles } from "../components/savedArticles";
+import { Searchbars } from "../components/Searchbars";
 import { Articles } from "../components/Articles";
+import { Component } from "./List";
 
 class Articles extends Component {
   state = {
@@ -87,16 +88,18 @@ class Articles extends Component {
         <Row>
           <Col size="md-12">
             <h3>Results</h3>
-            {Articles}
+            {this.state.articles.map(function(article){
+              return <Articles key={article._id} articleData={article} />
+            })}
         </Row>
         <Row>
           <Col size="md-12">
             <h3>Saved Articles</h3>
-              {savedArticles}
+              { savedArticles }
         </Row>                  
       </Container>
     );
   }
 }
 
-export default layout;
+export { default } layout;
